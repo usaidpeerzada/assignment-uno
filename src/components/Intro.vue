@@ -5,50 +5,40 @@
       <div class="top2">
         <input class="search" type="text" placeholder="Search" />
       </div>
-      <div class="top1">
-        <h2>Hi John Doe.</h2>
-        <p>
-          Welcome back to this shit place ass clowns hey there. you are an ass
-          and you suck boooo !
-        </p>
-        <div class="img">
-          <img src="https://picsum.photos/200" alt="img" />
+      <div class="row">
+        <div class="column">
+          <div class="card">
+            <h2>Hi John Doe.</h2>
+            <p>
+              Welcome back to this shit place ass clowns hey there. you are an
+              ass and you suck boooo !
+            </p>
+            <img src="https://picsum.photos/200" alt="img" />
+            <button class="button">View Details</button>
+          </div>
         </div>
-
-        <button class="button">View Details</button>
       </div>
-
-      <div class="mid">
-        <h3>Trending Blogs</h3>
-        <div class="row">
-          <div class="column">
-            <div class="card">
-              <h4>Prototyping</h4>
-              <p>
-                lorem ipsum dolor sit atem bull puss isem kissem lissem cheerem
-                tissem.
-              </p>
-            </div>
-          </div>
-          <div class="column" style="color:white">
-            <div class="card" style="background: black">
-              <h4>Typography</h4>
-              <p>
-                lorem ipsum dolor sit atem bull puss isem kissem lissem cheerem
-                tissem.
-              </p>
-            </div>
-          </div>
-          <div class="column">
-            <div class="card">
-              <h4>Color Palatte</h4>
-              <p>
-                lorem ipsum dolor sit atem bull puss isem kissem lissem cheerem
-                tissem.
-              </p>
-            </div>
-          </div>
-        </div>
+      <h4 style="display: inline-block,; padding-left:22vw">Trending Blogs</h4>
+      <div class="mid row">
+        <!-- Props Component -->
+        <InfoCard
+          class="card"
+          heading="Prototyping"
+          para="lorem ipsum lorem ipsum lorem
+       "
+        />
+        <InfoCard
+          class="card"
+          heading="Prototyping"
+          para="lorem ipsum lorem ipsum lorem
+          "
+        />
+        <InfoCard
+          class="card"
+          heading="Typography"
+          para="lorem ipsum lorem ipsum lorem
+       "
+        />
       </div>
     </div>
     <div class="right-side"></div>
@@ -56,19 +46,18 @@
 </template>
 
 <script>
-export default {};
+import InfoCard from "./InfoCard";
+export default {
+  components: {
+    InfoCard
+  }
+};
 </script>
 
 <style scoped>
-.intro {
-  display: grid;
-  grid-template: auto 1fr auto / auto 1fr auto;
-}
-.main {
-  grid-column: 2/3;
-}
-.left-side {
-  grid-column: 1/3;
+.top2 {
+  display: inline-block;
+  margin: 0 65vh;
 }
 .right-side {
   grid-column: 3/4;
@@ -77,8 +66,6 @@ export default {};
 .top1 {
   background: rgb(206, 206, 206);
   border-radius: 10px;
-  display: inline-block;
-  margin: 10px;
 }
 .img {
   float: right;
@@ -101,46 +88,12 @@ export default {};
 * {
   box-sizing: border-box;
 }
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Float four columns side by side */
-.column {
-  flex-direction: column;
-  width: 25%;
-  padding: 0 10px;
-}
-
-/* Remove extra left and right margins, due to padding in columns */
-.row {
+.mid {
   display: flex;
   justify-content: center;
+  margin: 40px 80px;
 }
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Style the counter cards */
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
-  padding: 16px;
-  text-align: center;
-  background-color: #f1f1f1;
-  border-radius: 30px;
-}
-
-/* Responsive columns - one column layout (vertical) on small screens */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
-  }
+  margin-left: 20px;
 }
 </style>

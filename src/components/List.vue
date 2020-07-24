@@ -1,30 +1,67 @@
 <template>
   <div class="main">
-    <h4 style="text-align:left; padding-left: 300px">List of Blogs</h4>
+    <div class="stuff">
+      <h4 style="text-align:left; padding-left: 300px">List of Blogs</h4>
+    </div>
+    <div class="mtuff">
+      <label for="status">Filter: </label>
+      <select id="status" v-model="fylter" name="Status">
+        <option value="published">published</option>
+        <option value="draft">draft</option>
+        <option value="deactivated">deactivated</option>
+      </select>
+    </div>
+    <div class="muff">
+      <select id="date" name="Date">
+        <option value="">2017</option>
+        <option value="saab">2016</option>
+        <option value="fiat">2015</option>
+        <option value="audi">2020</option>
+      </select>
+    </div>
     <table>
       <thead>
         <tr>
           <th>Date</th>
-          <th>Post Title</th>
+          <th>Title</th>
           <th>Status</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><strong>showSpeed</strong></td>
-          <td>1jskadbcjadsbcljdsbacbyulyboubrqelccycabyuewblwq</td>
-          <td>The speed of the show/reveal</td>
+        <tr v-for="post in filteredPosts" :key="post.id">
+          <td>{{ post.date }}</td>
+          <td>{{ post.title }}</td>
+          <td>{{ post.status }}</td>
         </tr>
         <tr></tr>
       </tbody>
     </table>
-
-    Resources
   </div>
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+export default {
+  data: function() {
+    return {
+      posts: [],
+      fylter: ""
+    };
+  },
+  mounted() {
+    axios
+      .get("https://my-json-server.typicode.com/orzel-bielik/test/posts")
+      .then(res => (this.posts = res.data))
+      .catch(err => console.log(err));
+  },
+  computed: {
+    filteredPosts: function() {
+      return this.posts.filter(post => {
+        return post.status.match(this.fylter);
+      });
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -79,5 +116,23 @@ td {
   padding: 10px 15px;
   position: relative;
   transition: all 300ms;
+}
+.stuff {
+  display: inline-block;
+}
+.mtuff {
+  display: inline-block;
+  padding-left: 25rem;
+}
+.muff {
+  display: inline-block;
+}
+select {
+  padding: 10px 30px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 6px;
+  background: rgb(230, 229, 229);
+  color: black;
 }
 </style>

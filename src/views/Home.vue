@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <HelloWorld />
+    <NavBar />
     <Intro />
     <List />
   </div>
@@ -8,17 +8,21 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+
 import Intro from "@/components/Intro.vue";
 import List from "@/components/List.vue";
-
+import NavBar from "@/components/NavBar.vue";
 export default {
   name: "Home",
   components: {
-    HelloWorld,
     Intro,
-    List
+    List,
+    NavBar
   }
 };
 </script>
-<style scoped></style>
+<style scoped>
+.home {
+  display: inline-block;
+}
+</style>
